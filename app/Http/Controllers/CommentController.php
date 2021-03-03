@@ -43,7 +43,12 @@ class CommentController extends Controller
             $comment->user_id = auth()->user()->id;
             $comment->comment = $request->get('comment');
             $comment->save();
-            return redirect('Post/'.$comment->post_id);
+            // return redirect('Post/'.$comment->post_id);
+            $notification=array(
+                'messege'=>'تم اضافة التعليق بنجاح',
+                'alert-type'=>'success'
+                );
+            return Redirect('Post/'.$comment->post_id)->with($notification);
         }
         else 
             return redirect('not_found');
@@ -95,7 +100,12 @@ class CommentController extends Controller
         $comment = Comment::find($id);
         if ( auth()->user()->can('delete', $comment)){
             $comment->delete();
-            return redirect('Post/'.$comment->post_id);
+            // return redirect('Post/'.$comment->post_id);
+            $notification=array(
+                'messege'=>'تم حذف التعليق بنجاح',
+                'alert-type'=>'success'
+                );
+            return Redirect('Post/'.$comment->post_id)->with($notification);
         }else
             return redirect('not_found');
     }

@@ -61,7 +61,12 @@ class PostController extends Controller
         $Post->user_id=auth()->user()->id;
         $Post->image_path=$name;
         $Post->save();
-        return redirect('Post/'.$Post->id);
+        // return redirect('Post/'.$Post->id);
+        $notification=array(
+            'messege'=>'تم اضافة المنشور بنجاح',
+            'alert-type'=>'success'
+            );
+        return Redirect('Post/'.$Post->id)->with($notification);	 
     }
 
     /**
@@ -115,7 +120,12 @@ class PostController extends Controller
         if (auth()->user()->can('update',$post)) {
             $post->body=$request->get('body');
             $post->save();
-            return redirect('Post/'.$id);
+            // return redirect('Post/'.$id);
+            $notification=array(
+                'messege'=>'تم تعديل المنشور بنجاح',
+                'alert-type'=>'success'
+                );
+            return Redirect('Post/'.$id)->with($notification);	 
         }
         else
             return redirect('not_found'); 
@@ -132,7 +142,12 @@ class PostController extends Controller
         $post = Post::find($id);
         if(auth()->user()->can('delete',$post)){
             $post->delete();
-            return redirect('user/posts');
+            // return redirect('user/posts');
+            $notification=array(
+                'messege'=>'تم حذف المنشور بنجاح',
+                'alert-type'=>'success'
+                );
+            return Redirect('user/Posts')->with($notification);
         }
         else
             return redirect('not_found');
