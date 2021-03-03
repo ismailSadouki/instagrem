@@ -51,7 +51,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'instegram_s1'),
             'username' => env('DB_USERNAME', 'instegram_s1'),
-            'password' => env('DB_PASSWORD', '12345678sadouki'),
+            'password' => env('DB_PASSWORD', 's'),
 =======
              'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
